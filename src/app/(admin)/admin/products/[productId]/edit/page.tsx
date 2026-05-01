@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import type { ProductVariant } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { ProductForm } from "@/components/admin/ProductForm";
 
@@ -40,7 +41,7 @@ export default async function EditProductPage({ params }: Props) {
           stockLevel: product.stockLevel,
           isAvailable: product.isAvailable,
           isFeatured: product.isFeatured,
-          variants: product.variants.map((v) => ({
+          variants: product.variants.map((v: ProductVariant) => ({
             id: v.id,
             type: v.type,
             value: v.value,

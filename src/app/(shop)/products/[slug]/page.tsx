@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import type { ProductVariant } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { ProductDetailContent } from "./ProductDetailContent";
 
@@ -43,7 +44,7 @@ export default async function ProductPage({ params }: Props) {
     ...product,
     price: Number(product.price),
     comparePrice: product.comparePrice ? Number(product.comparePrice) : null,
-    variants: product.variants.map((v) => ({
+    variants: product.variants.map((v: ProductVariant) => ({
       ...v,
       priceAdj: Number(v.priceAdj),
     })),
