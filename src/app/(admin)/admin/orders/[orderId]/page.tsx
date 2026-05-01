@@ -127,7 +127,7 @@ export default function AdminOrderDetailPage({ params }: { params: Promise<{ ord
           <CardTitle className="text-sm text-sidebar-foreground">Items</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          {order.items.map((item) => (
+          {order.items.map((item: OrderWithItems["items"][number]) => (
             <div key={item.id} className="flex items-center gap-3">
               <div className="relative w-12 h-14 rounded-sm overflow-hidden bg-muted shrink-0">
                 <Image

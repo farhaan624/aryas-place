@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { formatDate, formatPrice } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
 import type { ShippingAddressInput } from "@/lib/validations";
+import type { OrderWithItems } from "@/types";
 
 export default function OrderDetailPage({ params }: { params: Promise<{ orderId: string }> }) {
   const { orderId } = use(params);
@@ -59,7 +60,7 @@ export default function OrderDetailPage({ params }: { params: Promise<{ orderId:
       <div className="border border-border rounded-sm p-6 space-y-4">
         <h2 className="font-heading text-lg tracking-wide">Items</h2>
         <Separator />
-        {order.items.map((item) => (
+        {order.items.map((item: OrderWithItems["items"][number]) => (
           <div key={item.id} className="flex items-center gap-4">
             <Link href={`/products/${item.product.slug}`} className="shrink-0">
               <div className="relative w-16 h-20 rounded-sm overflow-hidden bg-muted">
