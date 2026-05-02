@@ -1,10 +1,17 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type { ProductVariant } from "@prisma/client";
+
+interface VariantOption {
+  id: string;
+  type: string;
+  value: string;
+  stock: number;
+  priceAdj: number;
+}
 
 interface VariantSelectorProps {
-  variants: ProductVariant[];
+  variants: VariantOption[];
   selectedVariantId: string | null;
   onSelect: (variantId: string | null) => void;
 }
@@ -17,7 +24,7 @@ export function VariantSelector({ variants, selectedVariantId, onSelect }: Varia
     if (!acc[variant.type]) acc[variant.type] = [];
     acc[variant.type].push(variant);
     return acc;
-  }, {} as Record<string, ProductVariant[]>);
+  }, {} as Record<string, VariantOption[]>);
 
   return (
     <div className="space-y-4">

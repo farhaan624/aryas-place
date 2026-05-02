@@ -7,12 +7,19 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useCartStore } from "@/store/cartStore";
 import { Button } from "@/components/ui/button";
-import type { ProductWithCategory } from "@/types";
-import type { ProductVariant } from "@prisma/client";
+import type { SerializedProductWithCategory } from "@/types";
+
+interface SelectedVariant {
+  id: string;
+  type: string;
+  value: string;
+  stock: number;
+  priceAdj: number;
+}
 
 interface PreOrderButtonProps {
-  product: ProductWithCategory;
-  selectedVariant: ProductVariant | null;
+  product: SerializedProductWithCategory;
+  selectedVariant: SelectedVariant | null;
 }
 
 export function PreOrderButton({ product, selectedVariant }: PreOrderButtonProps) {

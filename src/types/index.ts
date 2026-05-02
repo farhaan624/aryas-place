@@ -8,6 +8,12 @@ export type ProductWithCategory = Product & {
   _count?: { wishlistItems: number; orderItems: number };
 };
 
+export type SerializedProductWithCategory = Omit<ProductWithCategory, "price" | "comparePrice" | "variants"> & {
+  price: number;
+  comparePrice: number | null;
+  variants: (Omit<ProductVariant, "priceAdj"> & { priceAdj: number })[];
+};
+
 export type OrderWithItems = Order & {
   items: (OrderItem & {
     product: Product;

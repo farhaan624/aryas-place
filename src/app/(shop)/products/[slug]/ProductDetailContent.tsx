@@ -10,11 +10,10 @@ import { WishlistButton } from "@/components/wishlist/WishlistButton";
 import { PriceDisplay } from "@/components/shared/PriceDisplay";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import type { ProductWithCategory } from "@/types";
-import type { ProductVariant } from "@prisma/client";
+import type { SerializedProductWithCategory } from "@/types";
 
 interface Props {
-  product: ProductWithCategory;
+  product: SerializedProductWithCategory;
 }
 
 export function ProductDetailContent({ product }: Props) {
@@ -76,7 +75,7 @@ export function ProductDetailContent({ product }: Props) {
 
           {/* Variants */}
           <VariantSelector
-            variants={product.variants as ProductVariant[]}
+            variants={product.variants}
             selectedVariantId={selectedVariantId}
             onSelect={setSelectedVariantId}
           />
