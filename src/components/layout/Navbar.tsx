@@ -211,18 +211,25 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-          <div className="border-t border-gold/10 pt-5 flex gap-4">
+          <div className="border-t border-gold/10 pt-5 flex flex-col gap-3">
             {!session ? (
               <Button asChild size="sm" className="bg-gold text-noir border-0 tracking-widest text-xs uppercase">
                 <Link href="/login">Sign In</Link>
               </Button>
             ) : (
-              <button
-                onClick={() => signOut({ callbackUrl: "/" })}
-                className="text-xs tracking-widest text-cream/40 uppercase"
-              >
-                Sign Out
-              </button>
+              <>
+                <Link href="/orders" onClick={() => setMobileOpen(false)} className="text-xs tracking-[0.3em] text-cream/60 hover:text-gold transition-colors uppercase">My Orders</Link>
+                <Link href="/account" onClick={() => setMobileOpen(false)} className="text-xs tracking-[0.3em] text-cream/60 hover:text-gold transition-colors uppercase">Account</Link>
+                {session.user.role === "ADMIN" && (
+                  <Link href="/admin" onClick={() => setMobileOpen(false)} className="text-xs tracking-[0.3em] text-gold hover:text-gold/80 transition-colors uppercase">Admin Dashboard</Link>
+                )}
+                <button
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                  className="text-xs tracking-widest text-cream/40 uppercase text-left"
+                >
+                  Sign Out
+                </button>
+              </>
             )}
           </div>
         </nav>
